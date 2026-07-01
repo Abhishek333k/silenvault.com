@@ -3,223 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>About SilenVault Tools</title>
-    <meta name="description" content="Discover the philosophy and architecture behind SilenVault Tools: Absolute privacy through local client-side processing.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>SilenVault Tools | Technical Documentation</title>
+    <meta name="description" content="Comprehensive technical documentation for the SilenVault client-side developer utility suite.">
+    <link rel="icon" type="image/webp" href="/assets/img/SILENVAULT_CREST.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-primary: #10b981;
-            --accent-secondary: #3b82f6;
-            --card-bg: rgba(30, 41, 59, 0.4);
-            --border-color: rgba(255, 255, 255, 0.05);
+            --bg-color: #030712;
+            --neon-blue: #00f0ff;
+            --text-main: #e2e8f0;
+            --panel-bg: rgba(10, 15, 30, 0.8);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Rajdhani', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            line-height: 1.6;
+            background: radial-gradient(circle at top, #0f172a, var(--bg-color));
             min-height: 100vh;
-            padding: env(safe-area-inset-top) 5% env(safe-area-inset-bottom);
-            background: radial-gradient(circle at top left, #1e293b, #0b0f19);
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        header {
-            text-align: left;
-            margin-bottom: 5rem;
-            padding-top: 4rem;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .eyebrow {
-            color: var(--accent-primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .lead-text {
-            color: var(--text-secondary);
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            max-width: 750px;
-            font-weight: 300;
-        }
-
-        .content-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 4rem;
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease-out 0.2s both;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .content-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
             display: flex;
-            align-items: center;
-            gap: 1rem;
+            flex-direction: column;
         }
-
-        .content-section p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .content-section p:last-child {
-            margin-bottom: 0;
-        }
-
-        .grid-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-box {
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-        }
-
-        .feature-box h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .feature-box p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        .glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        header { text-align: center; padding: 4rem 2rem 2rem 2rem; }
+        .brand-logo { max-height: 100px; filter: drop-shadow(0 0 20px var(--neon-blue)); }
+        
+        /* Documentation Container */
+        .sv-docs-container {
+            max-width: 1000px; 
+            margin: 0 auto 4rem auto; 
+            padding: 3rem;
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+            border-top: 4px solid var(--neon-blue);
         }
         
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .sv-docs-container h1 { 
+            font-family: 'Orbitron', sans-serif; 
+            color: #fff; 
+            font-size: 2.5rem; 
+            text-transform: uppercase; 
+            margin-bottom: 2rem; 
+            text-shadow: 0 0 10px var(--neon-blue); 
+            text-align: center;
+        }
+        .sv-docs-container h2 { 
+            font-family: 'Orbitron', sans-serif; 
+            color: var(--neon-blue); 
+            margin-top: 2.5rem; 
+            margin-bottom: 1rem; 
+            text-transform: uppercase; 
+            font-size: 1.6rem; 
+        }
+        .sv-docs-container h3 { 
+            font-size: 1.3rem; 
+            color: #fff; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.5rem; 
+        }
+        .sv-docs-container p { 
+            font-size: 1.15rem; 
+            margin-bottom: 1.2rem; 
+            color: #cbd5e1; 
+            line-height: 1.8;
+        }
+        .sv-docs-container ul { 
+            margin-bottom: 1.5rem; 
+            padding-left: 1.5rem; 
+        }
+        .sv-docs-container li { 
+            font-size: 1.15rem; 
+            margin-bottom: 0.5rem; 
+            color: #cbd5e1; 
+        }
+        .sv-docs-container code {
+            background: rgba(0, 240, 255, 0.1);
+            color: #00f0ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
         }
 
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .content-section {
-                padding: 2.5rem 1.5rem;
-            }
+        /* Footer */
+        footer { 
+            margin-top: auto; 
+            text-align: center; 
+            border-top: 1px solid rgba(0, 240, 255, 0.2); 
+            padding: 2rem 0; 
+            background: var(--bg-color); 
         }
+        footer a { 
+            color: var(--text-main); 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-size: 1.1rem; 
+            text-transform: uppercase; 
+            transition: color 0.3s; 
+            font-family: 'Orbitron', sans-serif;
+        }
+        footer a:hover { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
+
+        /* CMP Banner */
+        #cmp-banner { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(10, 15, 30, 0.95); 
+            border-top: 1px solid var(--neon-blue); 
+            padding: 1.5rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 9999; 
+            backdrop-filter: blur(10px); 
+        }
+        .cmp-text { color: #fff; font-size: 1.1rem; }
+        .cmp-buttons button { 
+            background: transparent; 
+            border: 1px solid var(--neon-blue); 
+            color: var(--neon-blue); 
+            padding: 8px 20px; 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 0.9rem; 
+            cursor: pointer; 
+            margin-left: 10px; 
+            text-transform: uppercase; 
+            transition: all 0.2s; 
+        }
+        .cmp-buttons button:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 15px var(--neon-blue); }
     </style>
 </head>
 <body>
-    <div class="glow"></div>
-    
-    <div class="container">
-        <header>
-            <span class="eyebrow">The Philosophy</span>
-            <h1>SilenVault Tools</h1>
-            <p class="lead-text">A professional suite of client-side web utilities engineered with absolute privacy at its core. No cloud tracking, no server interception.</p>
-        </header>
+    <header>
+        <a href="https://silenvault.com">
+            <img src="/assets/img/SILENVAULT_LOGO.webp" alt="SilenVault Logo" class="brand-logo">
+        </a>
+    </header>
 
-        <main>
-            <section class="content-section">
-                <h2>The Standard in Client-Side Digital Operations</h2>
-                <p>In the modern software landscape, data privacy is frequently compromised in exchange for cloud convenience. Standard web applications require users to transmit sensitive contact registries, internal network passphrases, and precise location coordinates to external servers simply to perform routine utility tasks.</p>
-                <p>SilenVault mitigates this security risk entirely. We engineer a comprehensive directory of web utilities that execute 100% on the client-side. Utilizing native HTML5 APIs, local JavaScript engines, and modern browser sandboxing, your data remains strictly within your device's active memory.</p>
-            </section>
+    <main class="sv-docs-container">
+        <h1>SilenVault Developer Tools Documentation</h1>
+        
+        <section>
+            <h2>1. About the Toolset</h2>
+            <p>The SilenVault Developer Toolset represents a paradigm shift in how we approach daily technical utilities. In modern web development and software engineering, professionals frequently rely on cloud-based solutions to format JSON, hash security strings, compress media, or evaluate system diagnostics. This reliance introduces severe operational security risks, as sensitive API keys, proprietary algorithms, and raw metadata are constantly transmitted to remote servers.</p>
+            <p>To combat this vulnerability, SilenVault has engineered a comprehensive suite of developer utilities designed with absolute zero-trust principles. Every tool in this directory is deployed strictly to the client. We do not provision backend databases, we do not utilize server-side processing arrays, and we do not monitor computational telemetry. By confining all operations within the immediate sandboxed environment of your active web browser, SilenVault ensures that your proprietary data cannot be intercepted, logged, or compromised during routine utility operations. This documentation outlines the architectural foundation and operational limitations of the SilenVault toolset.</p>
+        </section>
 
-            <section class="content-section" style="animation-delay: 0.4s;">
-                <h2>Static Architecture Implementation</h2>
-                <p>Our featured modules highlight our structural philosophy. SilenVault exclusively compiles <strong>Static Outputs</strong>. Data payloads are mathematically mapped directly into the structural output without server interception.</p>
-                
-                <div class="grid-features">
-                    <div class="feature-box">
-                        <h3>Zero Maintenance</h3>
-                        <p>Because operations happen in your browser's memory, this methodology requires zero server maintenance and circumvents third-party analytics tracking entirely.</p>
-                    </div>
-                    <div class="feature-box">
-                        <h3>Operational Validity</h3>
-                        <p>Our architecture guarantees the permanent operational validity of your generated assets. If your browser works, SilenVault Tools work. Period.</p>
-                    </div>
-                </div>
-            </section>
+        <section>
+            <h2>2. Core Architectures</h2>
+            <p>At the heart of the SilenVault toolset is the Static Output Architecture. Traditional web applications operate on a request-response cycle, transmitting user inputs to a server for processing before returning the computed payload. SilenVault fundamentally alters this model.</p>
+            <p>Our applications consist entirely of pre-compiled HTML, Cascading Style Sheets, and modular JavaScript files. When you navigate to a SilenVault tool, the entire logic engine is downloaded and instantiated directly within the V8 engine (or equivalent) of your local browser. Computational operations—such as base64 encoding, JSON validation, and cryptographic hashing—are executed locally using the device's native CPU and memory resources.</p>
+            <h3>Persistent Local State</h3>
+            <p>To provide a seamless developer experience without database tracking, we leverage the HTML5 Web Storage API, specifically <code>window.localStorage</code> and <code>window.sessionStorage</code>. For example, when you construct a complex regular expression pattern or save a customized CSS gradient configuration, that state is written locally to your device’s hard drive via LocalStorage. This data is physically isolated to the specific browser profile and hardware you are operating on. Consequently, SilenVault requires zero authentication layers, completely eliminating the attack vector associated with compromised user credentials.</p>
+        </section>
 
-            <section class="content-section" style="animation-delay: 0.6s; text-align: center; background: transparent; border: none; box-shadow: none;">
-                <p style="font-style: italic; font-size: 1.25rem; color: #fff;">"Simplicity is the ultimate sophistication."</p>
-                <p style="font-size: 0.9rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">— Leonardo da Vinci</p>
-            </section>
-        </main>
-    </div>
+        <section>
+            <h2>3. Primary Use Cases</h2>
+            <p>The SilenVault suite is specifically calibrated for scenarios demanding strict data confidentiality and rapid iteration. The following operational profiles highlight our primary use cases:</p>
+            <h3>Secure Cryptographic Hashing</h3>
+            <p>Security engineers and backend developers frequently need to generate SHA-256, MD5, or bcrypt hashes to verify payload integrity or construct database mockups. Utilizing standard online hash generators exposes raw passwords and cryptographic salts to network interception. The SilenVault Hash Generator computes all cryptographic operations locally using the Web Crypto API, guaranteeing that raw strings are never exposed to external network traffic.</p>
+            <h3>Proprietary JSON Formatting</h3>
+            <p>When debugging complex REST API responses or configuring server manifests, developers often paste raw, unformatted JSON into online validators. This JSON frequently contains sensitive environmental variables, API endpoints, and authorization tokens. The SilenVault JSON Formatter parses, validates, and beautifies these structures entirely client-side, ensuring that proprietary architectural details do not inadvertently end up in a third-party analytics log.</p>
+            <h3>Media Metadata Sanitization (EXIF Removal)</h3>
+            <p>Journalists, photographers, and forensic analysts must strip sensitive geolocation coordinates and device identifying data from images before public deployment. The SilenVault Media Sanitizer utilizes localized WebAssembly (Wasm) ports to parse and destroy EXIF metadata without uploading the original, unredacted media file to a remote processing server, thereby preserving source anonymity.</p>
+        </section>
 
-    <!-- AdSense Compliance Footer -->
-    <footer style="margin-top: 5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 2rem 0; font-family: 'Inter', sans-serif;">
-        <a href="https://silenvault.com/privacy.html" style="color: #94a3b8; text-decoration: none; margin: 0 15px; font-size: 0.95rem; text-transform: uppercase;">Privacy Policy</a>
-        <a href="https://silenvault.com/terms.html" style="color: #94a3b8; text-decoration: none; margin: 0 15px; font-size: 0.95rem; text-transform: uppercase;">Terms of Service</a>
-        <a href="mailto:legal@silenvault.com" style="color: #94a3b8; text-decoration: none; margin: 0 15px; font-size: 0.95rem; text-transform: uppercase;">Contact Ops</a>
+        <section>
+            <h2>4. Technical Specifications & Limits</h2>
+            <p>While the client-side architecture guarantees unparalleled privacy, it is subject to the hardware limitations of the host device. Operators must be aware of the following technical thresholds:</p>
+            <ul>
+                <li><strong>Memory Constraints:</strong> Because processing occurs entirely in the browser's active heap, manipulating exceptionally large datasets (e.g., JSON payloads exceeding 50MB or uncompressed video files) may trigger memory exhaustion alerts resulting in a page crash.</li>
+                <li><strong>Storage Quotas:</strong> While state retention utilizes LocalStorage, standard browsers cap this storage at approximately 5MB per origin. Do not attempt to persist large binary blobs or extensive log files within the SilenVault localized cache.</li>
+                <li><strong>Browser Compatibility:</strong> The full functionality of the SilenVault toolset relies on modern JavaScript standards (ES6+), WebAssembly, and the Web Crypto API. Outdated legacy browsers (e.g., Internet Explorer) are strictly unsupported and will fail to initialize the core engine.</li>
+            </ul>
+            <p>By operating within these defined parameters, developers can utilize the SilenVault ecosystem as a high-performance, militantly private utility pipeline for their most critical technical tasks.</p>
+        </section>
+    </main>
+
+    <footer>
+        <a href="https://silenvault.com/privacy.html">Privacy Policy</a>
+        <a href="https://silenvault.com/terms.html">Terms of Service</a>
+        <a href="mailto:legal@silenvault.com">Contact Ops</a>
     </footer>
 
-    <!-- Google CMP Mockup -->
-    <div id="cmp-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(11, 15, 25, 0.95); border-top: 1px solid #10b981; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; z-index: 9999; backdrop-filter: blur(10px); transform: translateY(100%); animation: slideUp 0.5s forwards 1s;">
-        <div style="color: #f8fafc; font-size: 1rem;">
+    <div id="cmp-banner">
+        <div class="cmp-text">
             <strong>System Alert: Data Consent Required.</strong><br>
-            We use cookies and similar technologies to analyze site traffic, personalize content, and serve targeted advertisements to enhance your experience. See our <a href="https://silenvault.com/privacy.html" style="color:#10b981;">Privacy Policy</a>.
+            We use cookies and similar technologies to analyze site traffic, personalize content, and serve targeted advertisements to enhance your experience. See our <a href="https://silenvault.com/privacy.html" style="color:var(--neon-blue);">Privacy Policy</a>.
         </div>
-        <div>
-            <button onclick="document.getElementById('cmp-banner').style.display = 'none'" style="background: transparent; border: 1px solid #10b981; color: #10b981; padding: 8px 20px; cursor: pointer; margin-left: 10px; border-radius: 4px;">Decline</button>
-            <button onclick="document.getElementById('cmp-banner').style.display = 'none'" style="background: #10b981; border: 1px solid #10b981; color: #000; padding: 8px 20px; cursor: pointer; margin-left: 10px; font-weight: bold; border-radius: 4px;">Accept</button>
+        <div class="cmp-buttons">
+            <button onclick="document.getElementById('cmp-banner').style.display='none'">Decline</button>
+            <button onclick="document.getElementById('cmp-banner').style.display='none'">Accept</button>
         </div>
     </div>
-    <style>@keyframes slideUp { to { transform: translateY(0); } }</style>
 </body>
 </html>
