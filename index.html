@@ -126,50 +126,11 @@
 <body>
     <div id="webgl-container"></div>
 
-    <div class="content">
-        <img src="/assets/img/BANNER.webp" alt="SilenVault Banner" class="brand-logo">
-        <div class="links">
-            <a href="https://tools.silenvault.com">Tools</a>
-            <a href="https://store.silenvault.com">Store</a>
-            <a href="https://games.silenvault.com">Games</a>
-        </div>
-
-        <article class="corporate-profile">
-            <!-- Ad Space -->
-            <div class="ad-container" style="min-height: 90px; width: 100%; margin: 2rem 0; display: flex; align-items: center; justify-content: center;"></div>
-            
-            <section>
-                <h2>The SilenVault Manifesto</h2>
-                <p>In an era where digital sovereignty is constantly compromised, SilenVault emerges as a fortified sanctuary for the modern user. We believe that true autonomy requires a seamless integration of physical utility and digital privacy. The SilenVault Manifesto is built upon a singular, uncompromising directive: your data belongs exclusively to you. By fusing cutting-edge techwear design with privacy-first digital architecture, we provide a holistic ecosystem engineered to protect your identity in both the physical and digital realms.</p>
-                <p>Standard web infrastructure thrives on surveillance, extracting telemetry, and building shadow profiles from every interaction. We categorically reject this model. Our engineering philosophy dictates that any computational process that can be executed locally, must be executed locally. From the garments that shield you from environmental surveillance to the code executing within your browser, SilenVault is designed to render you untrackable, secure, and entirely self-reliant in an increasingly hostile digital landscape.</p>
-            </section>
-
-            <section>
-                <h2>The Digital Ecosystem</h2>
-                <p>The SilenVault network is comprised of three highly specialized divisions, each architected to serve a critical function without compromising our core privacy tenets.</p>
-                <p><strong>Tools (Client-Side Utilities):</strong> Accessible via tools.silenvault.com, this division offers a professional suite of diagnostic and operational utilities. Whether you are testing hardware inputs, formatting complex developer payloads, or sanitizing media metadata, every operation occurs 100% within your browser's active memory. By utilizing native HTML5 APIs and local JavaScript engines, we eliminate the need for server uploads. There is no cloud processing, no database logging, and no external tracking. When you close the tab, your data ceases to exist anywhere but your local machine.</p>
-                <p><strong>Games (Zero-Data Interactive Media):</strong> Hosted at games.silenvault.com, our interactive division re-engineers classic simulation and entertainment software for the modern era. We strictly enforce "True Version" accessibility standards, ensuring high-contrast modes, colorblind filters, and rebindable controls are native to every experience. More importantly, these environments are completely decoupled from invasive analytics. We do not track your playtime, harvest your behavioral data, or require account creation to access our simulations.</p>
-                <p><strong>Store (Premium Apparel & Digital Assets):</strong> The Vault Archive at store.silenvault.com is our commercial hub, supplying users with the physical and digital tools necessary for absolute operational security. This includes hyper-optimized system configurations, premium digital assets, and our exclusive line of tactical techwear. Every transaction is processed securely through encrypted, localized gateways, ensuring your purchasing data remains confidential and your physical operational security is maintained.</p>
-            </section>
-
-            <section>
-                <h2>Infrastructure & Privacy</h2>
-                <p>The technical foundation of SilenVault relies on a static architecture implementation. By generating static outputs and mathematically mapping data directly into the structural output without server interception, we neutralize the vulnerabilities inherent in dynamic, database-driven applications. This methodology ensures zero server maintenance and circumvents third-party analytics entirely.</p>
-                <p>We do not operate backend databases for our core utilities. We do not retain session logs, IP footprints, or metadata telemetry. Our commitment to client-side processing means that our servers act merely as delivery mechanisms for the interface; the actual computation happens on the silicon of your own device. We utilize advanced browser sandboxing and strict Content Security Policies (CSP) to guarantee that your operational data is never exposed to external vectors. At SilenVault, privacy is not a feature or a premium tier—it is the foundational physics of our entire ecosystem.</p>
-            </section>
-        </article>
-    </div>
-
-    <footer>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="mailto:legal@silenvault.com">Contact Ops</a>
-    </footer>
-
-    <div id="cmp-banner">
-        <span>We use cookies and similar technologies to analyze site traffic, personalize content, and serve targeted advertisements to enhance your experience. <a href="/privacy.html" style="color:#fff;">Privacy Policy</a>.</span>
-        <button onclick="dismissCmp()">Decline</button>
-        <button onclick="acceptCookies()">Accept</button>
+    <div class="content" style="background: rgba(3, 7, 18, 0.85); border: 1px solid #00f0ff; box-shadow: 0 0 30px rgba(0, 240, 255, 0.15); padding: 4rem;">
+        <img src="/assets/img/BANNER.webp" alt="SilenVault Banner" class="brand-logo" style="margin-bottom: 2rem;">
+        <h1 style="color: #00f0ff; font-family: 'Orbitron', 'Rajdhani', sans-serif; letter-spacing: 6px; text-transform: uppercase; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);">System Offline</h1>
+        <p style="color: #cbd5e1; font-size: 1.1rem; margin-top: 1.5rem; letter-spacing: 2px; text-transform: uppercase;">Infrastructure undergoing scheduled maintenance.</p>
+        <p style="color: #64748b; font-size: 0.9rem; margin-top: 2rem; font-family: monospace;">ERR_CODE: OFFLINE_MAINTENANCE_MODE</p>
     </div>
 
     <script>
@@ -225,66 +186,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // OpsCode Standard: Consent-Gated Ad Loading & First-Party Fallback
-        function loadAdSense() {
-            try {
-                const script = document.createElement('script');
-                script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5449371042798610";
-                script.async = true;
-                script.crossOrigin = "anonymous";
-                document.head.appendChild(script);
-                console.log("SilenVault Ops: AdSense Initialized.");
-            } catch (e) {
-                console.warn("SilenVault Ops: AdSense failed to initialize.", e);
-            }
-        }
 
-        function loadFirstPartyFallback() {
-            try {
-                const adContainers = document.querySelectorAll('.ad-container');
-                adContainers.forEach(container => {
-                    container.innerHTML = '<a href="https://store.silenvault.com" style="display:block; width:100%; height:100%; background:rgba(10, 15, 30, 0.8); border:1px solid #00f0ff; color:#00f0ff; display:flex; align-items:center; justify-content:center; text-decoration:none; font-family:Orbitron, sans-serif; font-size: 1.2rem; letter-spacing: 1px;">[ SUPPORT SILENVAULT - VISIT STORE ]</a>';
-                });
-                console.log("SilenVault Ops: First-Party Fallback Engaged.");
-            } catch (e) {
-                console.error("SilenVault Ops: Fallback injection failed.", e);
-            }
-        }
-
-        function acceptCookies() {
-            try {
-                document.getElementById('cmp-banner').style.display = 'none';
-                localStorage.setItem('sv_cookie_consent', 'true');
-                loadAdSense(); // Only load ads NOW
-            } catch(e) {
-                console.error("Storage error:", e);
-            }
-        }
-
-        function dismissCmp() {
-            try {
-                document.getElementById('cmp-banner').style.display = 'none';
-                localStorage.setItem('sv_cookie_consent', 'false');
-                loadFirstPartyFallback(); // Inject fallback if declined
-            } catch(e) {
-                console.error("Storage error:", e);
-            }
-        }
-
-        // On page load, check if already accepted or declined
-        try {
-            const consent = localStorage.getItem('sv_cookie_consent');
-            if(consent === 'true') {
-                document.getElementById('cmp-banner').style.display = 'none';
-                loadAdSense();
-            } else if (consent === 'false') {
-                document.getElementById('cmp-banner').style.display = 'none';
-                loadFirstPartyFallback();
-            }
-        } catch(e) {
-            console.warn("SilenVault Ops: LocalStorage blocked. Engaging fallback.", e);
-            loadFirstPartyFallback();
-        }
     </script>
 </body>
 </html>
