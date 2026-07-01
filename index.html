@@ -3,292 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>SilenVault | Privacy-First Cyber Ecosystem</title>
+    <title>SilenVault | Privacy-First Ecosystem</title>
     <meta name="description" content="SilenVault: An advanced ecosystem of client-side tools, premium digital assets, and zero-data web games.">
     <link rel="icon" type="image/webp" href="/assets/img/SILENVAULT_CREST.webp">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <style>
-        :root {
-            --bg-color: #030712;
-            --neon-blue: #00f0ff;
-            --neon-green: #39ff14;
-            --neon-pink: #ff007f;
-            --text-main: #e2e8f0;
-            --panel-bg: rgba(10, 15, 30, 0.6);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: sans-serif; 
+            color: #fff; 
+            overflow-x: hidden; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
+        #webgl-container { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            z-index: -1; 
+            background-color: #030712; 
         }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            min-height: 100vh;
+        .content { 
+            z-index: 10; 
+            text-align: center; 
+            padding: 3rem; 
+            background: rgba(0, 0, 0, 0.4); 
+            border-radius: 12px; 
+            backdrop-filter: blur(10px);
+            margin-top: auto; 
+            margin-bottom: auto; 
         }
-
-        /* ThreeJS Canvas */
-        #webgl-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
+        .brand-logo { 
+            max-height: 100px; 
+            margin-bottom: 3rem; 
         }
-
-        /* Overlay to darken background */
-        .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, var(--bg-color) 100%);
-            z-index: -1;
-            pointer-events: none;
+        .links { 
+            display: flex; 
+            gap: 3rem; 
+            justify-content: center; 
         }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 6rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .brand-logo {
-            max-width: 100%;
-            height: auto;
-            max-height: 120px;
-            filter: drop-shadow(0 0 20px var(--neon-blue));
-            animation: glitch-img 3s infinite;
-        }
-
-        @keyframes glitch-img {
-            0%, 100% { filter: drop-shadow(0 0 20px var(--neon-blue)); }
-            92% { filter: drop-shadow(0 0 20px var(--neon-blue)); }
-            94% { transform: translate(-2px, 2px); filter: drop-shadow(2px 0 var(--neon-pink)) drop-shadow(-2px 0 var(--neon-green)); }
-            96% { transform: translate(2px, -2px); filter: drop-shadow(-2px 0 var(--neon-pink)) drop-shadow(2px 0 var(--neon-green)); }
-            98% { transform: translate(0, 0); filter: drop-shadow(0 0 20px var(--neon-blue)); }
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px var(--neon-blue), 0 0 40px rgba(0, 240, 255, 0.5);
-            animation: glitch 3s infinite;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--neon-blue);
+        .links a { 
+            color: #fff; 
+            text-decoration: none; 
+            font-size: 1.2rem; 
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-top: 1rem;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            transition: opacity 0.2s; 
         }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-
-        .cyber-card {
-            background: var(--panel-bg);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 3rem 2rem;
-            position: relative;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-            overflow: hidden;
-            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-        }
-
-        .cyber-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 4px; height: 100%;
-            background: var(--card-color, var(--neon-blue));
-            box-shadow: 0 0 15px var(--card-color, var(--neon-blue));
-        }
-
-        .cyber-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--card-color, var(--neon-blue));
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1) inset;
-        }
-
-        .card-icon {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: var(--card-color, var(--neon-blue));
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px var(--card-color, var(--neon-blue));
-        }
-
-        .card-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .card-desc {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        .status-badge {
-            margin-top: 1.5rem;
-            display: inline-block;
-            padding: 5px 15px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--card-color, var(--neon-blue));
-            color: var(--card-color, var(--neon-blue));
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) inset;
-        }
-
-        /* Cyber UI Details */
-        .corner { position: absolute; width: 10px; height: 10px; border: 2px solid var(--neon-blue); }
-        .corner-tr { top: 10px; right: 10px; border-bottom: none; border-left: none; }
+        .links a:hover { opacity: 0.6; }
         
-        .card:nth-child(1) { --card-color: var(--neon-blue); }
-        .card:nth-child(2) { --card-color: var(--neon-green); }
-        .card:nth-child(3) { --card-color: var(--neon-pink); }
+        footer { 
+            margin-top: auto; 
+            padding: 2rem; 
+            text-align: center; 
+            width: 100%; 
+            z-index: 10; 
+        }
+        footer a { 
+            color: #aaa; 
+            text-decoration: none; 
+            margin: 0 1rem; 
+            font-size: 0.9rem; 
+        }
+        footer a:hover { color: #fff; }
 
-        /* Glitch Animation */
-        @keyframes glitch {
-            0%, 100% { text-shadow: 0 0 20px var(--neon-blue), 0 0 40px rgba(0, 240, 255, 0.5); }
-            92% { text-shadow: 0 0 20px var(--neon-blue), 0 0 40px rgba(0, 240, 255, 0.5); }
-            94% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--neon-pink), -2px 0 var(--neon-green); }
-            96% { transform: translate(2px, -2px); text-shadow: -2px 0 var(--neon-pink), 2px 0 var(--neon-green); }
-            98% { transform: translate(0, 0); text-shadow: 0 0 20px var(--neon-blue), 0 0 40px rgba(0, 240, 255, 0.5); }
+        #cmp-banner { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(0,0,0,0.9); 
+            padding: 1.5rem; 
+            text-align: center; 
+            z-index: 9999; 
+            border-top: 1px solid #333; 
         }
-
-        /* CMP Banner */
-        #cmp-banner {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            background: rgba(10, 15, 30, 0.95);
-            border-top: 1px solid var(--neon-pink);
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 9999;
-            backdrop-filter: blur(10px);
-            font-family: 'Rajdhani', sans-serif;
-            transform: translateY(100%);
-            animation: slideUp 0.5s forwards 1s;
+        #cmp-banner span { color: #ccc; }
+        #cmp-banner button { 
+            margin-left: 1rem; 
+            padding: 0.5rem 1.5rem; 
+            cursor: pointer; 
+            background: #fff; 
+            border: none; 
+            color: #000; 
+            border-radius: 4px;
         }
-
-        @keyframes slideUp {
-            to { transform: translateY(0); }
-        }
-
-        .cmp-text { color: #fff; font-size: 1.1rem; }
-        .cmp-buttons button {
-            background: transparent;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 8px 20px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-left: 10px;
-            text-transform: uppercase;
-            transition: all 0.2s;
-        }
-        .cmp-buttons button:hover, .cmp-buttons button.primary {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 15px var(--neon-blue);
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 5rem;
-            text-align: center;
-            border-top: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 2rem 0;
-        }
-        footer a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-        footer a:hover { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
     </style>
 </head>
 <body>
-    <!-- 3D Background -->
     <div id="webgl-container"></div>
-    <div class="overlay"></div>
 
-    <div class="container">
-        <header>
-            <img src="/assets/img/SILENVAULT_LOGO.webp" alt="SilenVault Logo" class="brand-logo">
-            <div class="subtitle">Secure Network Operations</div>
-        </header>
-
-        <main class="grid">
-            <a href="https://tools.silenvault.com" class="cyber-card card">
-                <div class="corner corner-tr"></div>
-                <div class="card-icon">[ SYS.TOOLS ]</div>
-                <h2 class="card-title">Utility Matrix</h2>
-                <p class="card-desc">Advanced client-side processing suite. Execute diagnostics locally within active memory. Zero telemetry. Zero server payloads.</p>
-                <div class="status-badge">Network: Online</div>
-            </a>
-
-            <a href="https://store.silenvault.com" class="cyber-card card">
-                <div class="corner corner-tr"></div>
-                <div class="card-icon">[ SYS.STORE ]</div>
-                <h2 class="card-title">The Vault Archive</h2>
-                <p class="card-desc">Acquire premium digital assets, hyper-optimized system configurations, and exclusive techwear apparel.</p>
-                <div class="status-badge">Network: Online</div>
-            </a>
-
-            <a href="https://games.silenvault.com" class="cyber-card card">
-                <div class="corner corner-tr"></div>
-                <div class="card-icon">[ SYS.GAMES ]</div>
-                <h2 class="card-title">Simulation Grid</h2>
-                <p class="card-desc">Zero-data interactive environments. Engineered with 'True Version' accessibility standards for ultimate performance.</p>
-                <div class="status-badge">Network: Online</div>
-            </a>
-        </main>
+    <div class="content">
+        <img src="/assets/img/BANNER.webp" alt="SilenVault Banner" class="brand-logo">
+        <div class="links">
+            <a href="https://tools.silenvault.com">Tools</a>
+            <a href="https://store.silenvault.com">Store</a>
+            <a href="https://games.silenvault.com">Games</a>
+        </div>
     </div>
 
     <footer>
@@ -297,19 +113,12 @@
         <a href="mailto:legal@silenvault.com">Contact Ops</a>
     </footer>
 
-    <!-- Google CMP Mockup/Implementation -->
     <div id="cmp-banner">
-        <div class="cmp-text">
-            <strong>System Alert: Data Consent Required.</strong><br>
-            We use cookies and Google AdSense to personalize content and ads, provide social media features, and analyze our traffic. See our <a href="/privacy.html" style="color:var(--neon-blue);">Privacy Policy</a>.
-        </div>
-        <div class="cmp-buttons">
-            <button onclick="dismissCmp()">Decline</button>
-            <button class="primary" onclick="acceptCmp()">Initialize System (Accept)</button>
-        </div>
+        <span>We use cookies and Google AdSense to personalize content and ads. <a href="/privacy.html" style="color:#fff;">Privacy Policy</a>.</span>
+        <button onclick="document.getElementById('cmp-banner').style.display = 'none'">Decline</button>
+        <button onclick="document.getElementById('cmp-banner').style.display = 'none'">Accept</button>
     </div>
 
-    <!-- ThreeJS Sci-Fi Particles script -->
     <script>
         const container = document.getElementById('webgl-container');
         const scene = new THREE.Scene();
@@ -351,11 +160,8 @@
             requestAnimationFrame(animate);
             particlesMesh.rotation.y += 0.001;
             particlesMesh.rotation.x += 0.001;
-            
-            // Subtle mouse interaction
             particlesMesh.rotation.y += mouseX * 0.05;
             particlesMesh.rotation.x += mouseY * 0.05;
-            
             renderer.render(scene, camera);
         }
         animate();
@@ -365,15 +171,6 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
-
-        // CMP Logic
-        function acceptCmp() {
-            document.getElementById('cmp-banner').style.display = 'none';
-            // Here you would fire the Google AdSense init script
-        }
-        function dismissCmp() {
-            document.getElementById('cmp-banner').style.display = 'none';
-        }
     </script>
 </body>
 </html>
