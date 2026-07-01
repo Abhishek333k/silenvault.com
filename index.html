@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>SilenVault | Privacy-First Cyber Ecosystem</title>
     <meta name="description" content="SilenVault: An advanced ecosystem of client-side tools, premium digital assets, and zero-data web games.">
+    <link rel="icon" type="image/webp" href="/assets/img/SILENVAULT_CREST.webp">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <style>
@@ -62,6 +63,25 @@
         header {
             text-align: center;
             margin-bottom: 6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brand-logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 120px;
+            filter: drop-shadow(0 0 20px var(--neon-blue));
+            animation: glitch-img 3s infinite;
+        }
+
+        @keyframes glitch-img {
+            0%, 100% { filter: drop-shadow(0 0 20px var(--neon-blue)); }
+            92% { filter: drop-shadow(0 0 20px var(--neon-blue)); }
+            94% { transform: translate(-2px, 2px); filter: drop-shadow(2px 0 var(--neon-pink)) drop-shadow(-2px 0 var(--neon-green)); }
+            96% { transform: translate(2px, -2px); filter: drop-shadow(-2px 0 var(--neon-pink)) drop-shadow(2px 0 var(--neon-green)); }
+            98% { transform: translate(0, 0); filter: drop-shadow(0 0 20px var(--neon-blue)); }
         }
 
         h1 {
@@ -240,7 +260,7 @@
 
     <div class="container">
         <header>
-            <h1>SilenVault</h1>
+            <img src="/assets/img/SILENVAULT_LOGO.webp" alt="SilenVault Logo" class="brand-logo">
             <div class="subtitle">Secure Network Operations</div>
         </header>
 
