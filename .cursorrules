@@ -1,0 +1,38 @@
+# AdSense Consent Loading Rule
+
+For ALL HTML files in this repository, you MUST wrap the AdSense script in a consent-gated function.
+NEVER load the Google AdSense script automatically on initial page load.
+
+Always implement this logic in the `<script>` section:
+
+```javascript
+// OpsCode Standard: Consent-Gated Ad Loading
+function loadAdSense() {
+    const script = document.createElement('script');
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5449371042798610";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    document.head.appendChild(script);
+    console.log("SilenVault Ops: AdSense Initialized.");
+}
+
+function acceptCookies() {
+    document.getElementById('cmp-banner').style.display = 'none';
+    localStorage.setItem('sv_cookie_consent', 'true');
+    loadAdSense(); // Only load ads NOW
+}
+
+function dismissCmp() {
+    document.getElementById('cmp-banner').style.display = 'none';
+}
+
+// On page load, check if already accepted
+if(localStorage.getItem('sv_cookie_consent') === 'true') {
+    document.getElementById('cmp-banner').style.display = 'none';
+    loadAdSense();
+}
+```
+
+Make sure the CMP Banner (`#cmp-banner`) HTML always utilizes:
+`<button onclick="dismissCmp()">Decline</button>`
+`<button onclick="acceptCookies()">Accept</button>`
