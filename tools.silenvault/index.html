@@ -194,9 +194,36 @@
             We use cookies and similar technologies to analyze site traffic, personalize content, and serve targeted advertisements to enhance your experience. See our <a href="https://silenvault.com/privacy.html" style="color:var(--neon-blue);">Privacy Policy</a>.
         </div>
         <div class="cmp-buttons">
-            <button onclick="document.getElementById('cmp-banner').style.display='none'">Decline</button>
-            <button onclick="document.getElementById('cmp-banner').style.display='none'">Accept</button>
+            <button onclick="dismissCmp()">Decline</button>
+            <button onclick="acceptCookies()">Accept</button>
         </div>
     </div>
+    <script>
+        // OpsCode Standard: Consent-Gated Ad Loading
+        function loadAdSense() {
+            const script = document.createElement('script');
+            script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5449371042798610";
+            script.async = true;
+            script.crossOrigin = "anonymous";
+            document.head.appendChild(script);
+            console.log("SilenVault Ops: AdSense Initialized.");
+        }
+
+        function acceptCookies() {
+            document.getElementById('cmp-banner').style.display = 'none';
+            localStorage.setItem('sv_cookie_consent', 'true');
+            loadAdSense(); // Only load ads NOW
+        }
+
+        function dismissCmp() {
+            document.getElementById('cmp-banner').style.display = 'none';
+        }
+
+        // On page load, check if already accepted
+        if(localStorage.getItem('sv_cookie_consent') === 'true') {
+            document.getElementById('cmp-banner').style.display = 'none';
+            loadAdSense();
+        }
+    </script>
 </body>
 </html>
