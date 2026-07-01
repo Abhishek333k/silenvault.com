@@ -150,9 +150,23 @@
             <a href="#" class="btn">Explore Tools</a>
         </div>
         
+        <!-- SilenVault Dynamic Ad Unit (Place in UI container) -->
         <div class="ad-container">
-            <!-- Ad space placeholder for layout structure -->
-            <!-- The actual ads will be injected here by AdSense if responsive slots are added, but the script is globally loaded in the head -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5449371042798610"
+                 data-ad-slot="0000000000"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 // Defensive programming: Wrap initialization in try/catch
+                 // Prevents ad-blockers from terminating the rest of the application's JS execution.
+                 try {
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                 } catch (e) {
+                     console.warn("SilenVault Ops: AdSense module blocked or unavailable. Core systems operating normally.");
+                 }
+            </script>
         </div>
     </div>
 </body>
