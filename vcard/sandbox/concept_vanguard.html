@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Abhishek Ramesh | SilenVault - Concept Vanguard</title>
+    <meta name="description" content="Digital Business Card for Abhishek Ramesh, Founder & Core Architect at SilenVault.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Abhishek Ramesh",
+      "jobTitle": "Founder & Core Architect",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "SilenVault"
+      },
+      "url": "https://silenvault.com",
+      "email": "Founder@silenvault.com",
+      "telephone": [
+        "+919381437170",
+        "+919347008871"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "7-548, Gouthambudda Road",
+        "addressLocality": "Mangalagiri",
+        "addressRegion": "Andhra Pradesh",
+        "postalCode": "522503",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #030407;
+            --surface-glass: rgba(14, 17, 27, 0.72);
+            --surface-elevated: rgba(22, 27, 42, 0.8);
+            --border-neon: rgba(0, 240, 255, 0.22);
+            --border-subtle: rgba(255, 255, 255, 0.07);
+            --cyan: #00f0ff;
+            --cyan-glow: rgba(0, 240, 255, 0.35);
+            --indigo: #6366f1;
+            --purple: #8b5cf6;
+            --emerald: #10b981;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(24px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Cybernetic Aurora Background */
+        .aurora-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: floatGlow 18s ease-in-out infinite alternate;
+        }
+
+        .blob-1 {
+            width: 320px;
+            height: 320px;
+            background: var(--purple);
+            top: -100px;
+            left: -80px;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--cyan);
+            bottom: -60px;
+            right: -60px;
+            animation-duration: 14s;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--indigo);
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.15;
+            animation-duration: 22s;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 30px) scale(1.15); }
+        }
+
+        /* Main Container */
+        .stage {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        /* 3D Flip Card Scene */
+        .card-scene {
+            perspective: 1200px;
+            width: 100%;
+        }
+
+        .card-flipper {
+            position: relative;
+            width: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-flipper.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            background: var(--surface-glass);
+            backdrop-filter: blur(28px) saturate(200%);
+            -webkit-backdrop-filter: blur(28px) saturate(200%);
+            border: 1px solid var(--border-neon);
+            border-radius: 32px;
+            padding: 32px 22px 26px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.8),
+                0 0 35px rgba(0, 240, 255, 0.08),
+                inset 0 1px 2px rgba(255, 255, 255, 0.15);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-back {
+            position: absolute;
+            inset: 0;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Glass Top Shimmer */
+        .card-face::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+            transform: skewX(-20deg);
+            pointer-events: none;
+        }
+
+        /* Header / Meta Bar */
+        .top-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .badge-agent {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            color: var(--cyan);
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 4px 10px;
+            border-radius: 100px;
+            text-transform: uppercase;
+        }
+
+        .btn-flip-trigger {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 100px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        .btn-flip-trigger:hover {
+            color: var(--cyan);
+            border-color: var(--border-neon);
+            background: rgba(0, 240, 255, 0.1);
+        }
+
+        .btn-flip-trigger svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Hero Avatar Monogram */
+        .avatar-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .monogram-badge {
+            width: 92px;
+            height: 92px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #151a28 0%, #090c14 100%);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--cyan);
+            position: relative;
+            box-shadow: 
+                0 0 25px rgba(0, 240, 255, 0.2),
+                inset 0 0 15px rgba(0, 240, 255, 0.1);
+            margin-bottom: 16px;
+        }
+
+        .monogram-badge::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--cyan), transparent, var(--purple));
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .status-chip {
+            position: absolute;
+            bottom: 8px;
+            right: -4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: #090c14;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            padding: 3px 8px;
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            color: var(--emerald);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--emerald);
+            box-shadow: 0 0 6px var(--emerald);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .person-name {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .person-title {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--cyan);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .person-org {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .person-org a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .person-org a:hover {
+            color: var(--cyan);
+        }
+
+        /* Primary Action CTA */
+        .btn-save-contact {
+            width: 100%;
+            background: linear-gradient(135deg, #00f0ff 0%, #0099ff 100%);
+            color: #020617;
+            padding: 16px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.02em;
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.35);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: 20px;
+            border: none;
+            touch-action: manipulation;
+        }
+
+        .btn-save-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(0, 240, 255, 0.5);
+            background: linear-gradient(135deg, #33f3ff 0%, #1aa3ff 100%);
+        }
+
+        .btn-save-contact:active {
+            transform: scale(0.97);
+        }
+
+        .btn-save-contact svg {
+            width: 20px;
+            height: 20px;
+            stroke: #020617;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Quick Action Matrix (3 buttons) */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .action-chip {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 14px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        .action-chip:hover {
+            background: rgba(0, 240, 255, 0.08);
+            border-color: var(--border-neon);
+            transform: translateY(-2px);
+        }
+
+        .action-chip:active {
+            transform: scale(0.96);
+        }
+
+        .action-chip svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--cyan);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .action-chip span {
+            font-size: 11px;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        /* Tab Switcher for Dossier / Spec */
+        .info-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border-subtle);
+            border-radius: 22px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .info-row:hover {
+            border-color: rgba(0, 240, 255, 0.25);
+        }
+
+        .row-data {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .row-tag {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .row-val {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f1f5f9;
+            text-decoration: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .row-val:hover {
+            color: var(--cyan);
+        }
+
+        .btn-copy {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        .btn-copy:hover {
+            color: var(--cyan);
+            background: rgba(0, 240, 255, 0.12);
+        }
+
+        .btn-copy svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Back of the Card (QR Code Scanner Face) */
+        .card-back {
+            padding: 36px 24px;
+        }
+
+        .qr-wrapper {
+            background: #ffffff;
+            padding: 18px;
+            border-radius: 22px;
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.3);
+            margin: 20px 0;
+            width: 210px;
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-wrapper img {
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+        }
+
+        .qr-legend {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--cyan);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .qr-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            max-width: 260px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn-flip-back {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-neon);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        .btn-flip-back:hover {
+            background: rgba(0, 240, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+        }
+
+        /* Toast Alert */
+        .toast {
+            position: fixed;
+            bottom: calc(24px + env(safe-area-inset-bottom));
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: rgba(14, 18, 28, 0.95);
+            border: 1px solid var(--cyan);
+            backdrop-filter: blur(14px);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.25);
+            z-index: 100;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        .toast.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--cyan);
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora-canvas">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+    </div>
+
+    <div class="stage">
+        <div class="card-scene">
+            <div id="cardFlipper" class="card-flipper">
+                
+                <!-- FRONT FACE -->
+                <div class="card-face card-front">
+                    <!-- Top Meta Bar -->
+                    <div class="top-meta-bar">
+                        <span class="badge-agent">Concept: Vanguard</span>
+                        <button type="button" class="btn-flip-trigger" onclick="toggleCardFlip()" title="Flip to QR Code">
+                            <svg viewBox="0 0 24 24"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+                            <span>Show QR</span>
+                        </button>
+                    </div>
+
+                    <!-- Avatar Section -->
+                    <div class="avatar-section">
+                        <div class="monogram-badge">
+                            AR
+                            <div class="status-chip">
+                                <span class="status-dot"></span>
+                                <span>ONLINE</span>
+                            </div>
+                        </div>
+                        <h1 class="person-name">Abhishek Ramesh</h1>
+                        <div class="person-title">Founder &amp; Core Architect</div>
+                        <div class="person-org">
+                            <a href="https://silenvault.com" target="_blank" rel="noopener">SilenVault</a>
+                            <span>&bull;</span>
+                            <span style="color: var(--cyan); font-family: var(--font-mono); font-size: 11px;">EST. 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- Primary Hero Save Button -->
+                    <a href="../abhishek-ramesh-silenvault.vcf" class="btn-save-contact" download="abhishek-ramesh-silenvault.vcf">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        <span>Save Contact to Phone</span>
+                    </a>
+
+                    <!-- Quick Action Matrix -->
+                    <div class="quick-actions">
+                        <a href="tel:+919381437170" class="action-chip">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <span>Direct Call</span>
+                        </a>
+                        <a href="mailto:Founder@silenvault.com" class="action-chip">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <span>Send Email</span>
+                        </a>
+                        <a href="https://silenvault.com" target="_blank" rel="noopener" class="action-chip">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            <span>Ecosystem</span>
+                        </a>
+                    </div>
+
+                    <!-- Contact Details Spec -->
+                    <div class="info-card">
+                        <div class="info-row">
+                            <div class="row-data">
+                                <span class="row-tag">Primary Line</span>
+                                <a href="tel:+919381437170" class="row-val">+91 93814 37170</a>
+                            </div>
+                            <button class="btn-copy" onclick="copyDossier('+91 93814 37170', 'Primary phone copied')" title="Copy Phone">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="row-data">
+                                <span class="row-tag">Secondary Line</span>
+                                <a href="tel:+919347008871" class="row-val">+91 93470 08871</a>
+                            </div>
+                            <button class="btn-copy" onclick="copyDossier('+91 93470 08871', 'Secondary phone copied')" title="Copy Phone">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="row-data">
+                                <span class="row-tag">Direct Inquiries</span>
+                                <a href="mailto:Founder@silenvault.com" class="row-val">Founder@silenvault.com</a>
+                            </div>
+                            <button class="btn-copy" onclick="copyDossier('Founder@silenvault.com', 'Email copied')" title="Copy Email">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="row-data">
+                                <span class="row-tag">Operations Base</span>
+                                <span class="row-val" style="font-size: 12px;">Mangalagiri, Guntur - 522503, AP, India</span>
+                            </div>
+                            <button class="btn-copy" onclick="copyDossier('7-548, Gouthambudda Road, Mangalagiri, Guntur - 522503, Andhra Pradesh, India', 'Address copied')" title="Copy Address">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BACK FACE (QR CODE DISPLAY) -->
+                <div class="card-face card-back">
+                    <div class="qr-legend">// FAST ACCESS MATRIX</div>
+                    <div class="qr-wrapper">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fsilenvault.com%2Fvcard&color=030407&bgcolor=ffffff" alt="vCard QR Code" width="174" height="174">
+                    </div>
+                    <p class="qr-desc">Scan with any smartphone camera to open this digital business card directly.</p>
+                    <button type="button" class="btn-flip-back" onclick="toggleCardFlip()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 12l6-6M3 12l6 6"/></svg>
+                        <span>Back to Profile</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span class="toast-dot"></span>
+        <span id="toast-text">Copied to clipboard</span>
+    </div>
+
+    <script>
+        function toggleCardFlip() {
+            const flipper = document.getElementById('cardFlipper');
+            flipper.classList.toggle('flipped');
+        }
+
+        function copyDossier(text, message) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(message);
+                }).catch(() => {
+                    fallbackCopy(text, message);
+                });
+            } else {
+                fallbackCopy(text, message);
+            }
+        }
+
+        function fallbackCopy(text, message) {
+            const temp = document.createElement('input');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast(message);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const textEl = document.getElementById('toast-text');
+            textEl.textContent = message;
+            toast.classList.add('visible');
+            clearTimeout(window.toastTimer);
+            window.toastTimer = setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 2400);
+        }
+    </script>
+</body>
+</html>
