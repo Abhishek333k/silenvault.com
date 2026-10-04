@@ -313,18 +313,21 @@ body {
 
 .qr-code-frame {
     background: #ffffff;
-    padding: 12px;
+    padding: 10px;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     margin-bottom: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 166px;
+    height: 166px;
 }
 
+.qr-code-frame canvas,
 .qr-code-frame img {
-    width: 140px;
-    height: 140px;
+    width: 146px !important;
+    height: 146px !important;
     display: block;
     image-rendering: pixelated;
 }

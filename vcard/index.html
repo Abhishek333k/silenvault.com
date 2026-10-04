@@ -97,10 +97,10 @@
                     </div>
 
                     <div class="qr-code-frame">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https%3A%2F%2Fsilenvault.com%2Fvcard&color=090a0f&bgcolor=ffffff" alt="vCard QR Code" width="180" height="180">
+                        <div id="qrcode"></div>
                     </div>
 
-                    <p class="qr-caption">Point any phone camera to save contact or open this card.</p>
+                    <p class="qr-caption">Scan with phone camera to instantly add contact</p>
 
                     <button type="button" class="btn-flip-back" onclick="toggleCardFlip()">
                         <svg viewBox="0 0 24 24"><path d="M3 12h18M3 12l6-6M3 12l6 6"/></svg>
@@ -190,7 +190,56 @@
         <span id="toastMessage">Copied to clipboard</span>
     </div>
 
+    <!-- Local lightweight QR Generator (Zero External Tracking / Offline Safe) -->
+    <script src="qrcode.min.js"></script>
     <script>
+        // Native vCard Payload: scanning opens device native contacts form directly
+        const vCardPayload = [
+            "BEGIN:VCARD",
+            "VERSION:3.0",
+            "FN:Abhishek Ramesh",
+            "N:Ramesh;Abhishek;;;",
+            "ORG:SilenVault",
+            "TITLE:Founder & Core Architect",
+            "TEL;TYPE=CELL,VOICE:+919381437170",
+            "TEL;TYPE=WORK,VOICE:+919347008871",
+            "EMAIL;TYPE=WORK,INTERNET:Founder@silenvault.com",
+            "URL:https://silenvault.com",
+            "ADR;TYPE=WORK:;;7-548\\, Gouthambudda Road;Mangalagiri;Andhra Pradesh;522503;India",
+            "END:VCARD"
+        ].join("\r\n");
+
+        function initQrCode() {
+            const qrEl = document.getElementById("qrcode");
+            if (!qrEl) return;
+            try {
+                if (typeof QRCode !== 'undefined') {
+                    new QRCode(qrEl, {
+                        text: vCardPayload,
+                        width: 146,
+                        height: 146,
+                        colorDark: "#090a0f",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                } else {
+                    fallbackQr(qrEl);
+                }
+            } catch (err) {
+                console.error("QR render error:", err);
+                fallbackQr(qrEl);
+            }
+        }
+
+        function fallbackQr(qrEl) {
+            qrEl.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=146x146&data=' + encodeURIComponent(vCardPayload) + '&color=090a0f&bgcolor=ffffff" alt="vCard QR Code" width="146" height="146">';
+        }
+
+        document.addEventListener('DOMContentLoaded', initQrCode);
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initQrCode();
+        }
+
         function toggleCardFlip() {
             const card = document.getElementById('physicalCard');
             card.classList.toggle('is-flipped');
