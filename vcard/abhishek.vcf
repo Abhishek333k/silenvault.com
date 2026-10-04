@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Abhishek Ramesh
+N:Ramesh;Abhishek;;;
+ORG:SilenVault
+TITLE:Founder & Core Architect
+TEL;TYPE=CELL,VOICE:+919381437170
+TEL;TYPE=WORK,VOICE:+919347008871
+EMAIL;TYPE=WORK:Founder@silenvault.com
+URL:https://silenvault.com
+ADR;TYPE=WORK:;;7-548\, Gouthambudda Road;Mangalagiri;Andhra Pradesh;522503;India
+END:VCARD
