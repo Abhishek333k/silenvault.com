@@ -272,101 +272,50 @@ body {
 }
 
 /* ==========================================================
-   BACK FACE: High-Contrast QR Code Physical Layout
+   BACK FACE: Symmetrical Executive Pass Layout
    ========================================================== */
 .card-back {
     background: 
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
-        linear-gradient(145deg, #101217 0%, #07080a 100%);
+        radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 70%),
+        linear-gradient(145deg, #151821 0%, #0d0e14 100%);
     border: 1px solid var(--card-border-foil);
     transform: rotateY(180deg);
     position: absolute;
     inset: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 24px;
+    justify-content: space-between;
+    padding: 24px 22px 20px;
+    box-sizing: border-box;
 }
 
-.qr-header {
+/* Center Core for QR Code */
+.qr-stage {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.card-crest-sm {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-}
-
-.qr-title {
-    font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    color: var(--accent-silver);
+    justify-content: center;
+    flex: 1;
+    padding: 10px 0;
 }
 
 .qr-code-frame {
     background: #ffffff;
     padding: 10px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    margin-bottom: 12px;
+    border-radius: 14px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 166px;
-    height: 166px;
+    width: 152px;
+    height: 152px;
 }
 
 .qr-code-frame canvas,
 .qr-code-frame img {
-    width: 146px !important;
-    height: 146px !important;
+    width: 132px !important;
+    height: 132px !important;
     display: block;
     image-rendering: pixelated;
-}
-
-.qr-caption {
-    font-size: 11px;
-    color: var(--text-secondary);
-    margin-bottom: 14px;
-    max-width: 260px;
-    line-height: 1.4;
-}
-
-.btn-flip-back {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: #fff;
-    padding: 8px 18px;
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-    touch-action: manipulation;
-}
-
-.btn-flip-back:hover {
-    background: rgba(255, 255, 255, 0.16);
-    border-color: rgba(255, 255, 255, 0.35);
-}
-
-.btn-flip-back svg {
-    width: 14px;
-    height: 14px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
 }
 
 /* ==========================================================

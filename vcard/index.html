@@ -89,23 +89,29 @@
                     </div>
                 </div>
 
-                <!-- BACK FACE: High-Contrast QR Scanner Face -->
+                <!-- BACK FACE: Symmetrical Executive Pass Face -->
                 <div class="card-face card-back">
-                    <div class="qr-header">
-                        <img src="../assets/img/SILENVAULT_CREST.webp" alt="SilenVault Crest" class="card-crest-sm" width="28" height="28" onerror="this.style.display='none'">
-                        <span class="qr-title">SILENVAULT DIGITAL PASS</span>
+                    <div class="card-header">
+                        <div class="brand-cluster">
+                            <img src="../assets/img/SILENVAULT_CREST.webp" alt="SilenVault Crest" class="card-crest" width="30" height="30" onerror="this.style.display='none'">
+                            <span class="brand-wordmark">DIGITAL PASS</span>
+                        </div>
+                        <button type="button" class="btn-flip" onclick="toggleCardFlip()" aria-label="Flip back to front of card">
+                            <svg viewBox="0 0 24 24"><path d="M3 12h18M3 12l6-6M3 12l6 6"/></svg>
+                            <span>Front</span>
+                        </button>
                     </div>
 
-                    <div class="qr-code-frame">
-                        <div id="qrcode"></div>
+                    <div class="qr-stage">
+                        <div class="qr-code-frame">
+                            <div id="qrcode"></div>
+                        </div>
                     </div>
 
-                    <p class="qr-caption">Scan with phone camera to instantly add contact</p>
-
-                    <button type="button" class="btn-flip-back" onclick="toggleCardFlip()">
-                        <svg viewBox="0 0 24 24"><path d="M3 12h18M3 12l6-6M3 12l6 6"/></svg>
-                        <span>View Front Side</span>
-                    </button>
+                    <div class="card-footer-strip">
+                        <span class="card-location">Scan to auto-fill phone address book</span>
+                        <span class="tap-hint" onclick="toggleCardFlip()">&lt; Flip back</span>
+                    </div>
                 </div>
 
             </div>
@@ -216,11 +222,11 @@
                 if (typeof QRCode !== 'undefined') {
                     new QRCode(qrEl, {
                         text: vCardPayload,
-                        width: 146,
-                        height: 146,
+                        width: 132,
+                        height: 132,
                         colorDark: "#090a0f",
                         colorLight: "#ffffff",
-                        correctLevel: QRCode.CorrectLevel.M
+                        correctLevel: QRCode.CorrectLevel.L
                     });
                 } else {
                     fallbackQr(qrEl);
@@ -232,7 +238,7 @@
         }
 
         function fallbackQr(qrEl) {
-            qrEl.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=146x146&data=' + encodeURIComponent(vCardPayload) + '&color=090a0f&bgcolor=ffffff" alt="vCard QR Code" width="146" height="146">';
+            qrEl.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=132x132&data=' + encodeURIComponent(vCardPayload) + '&color=090a0f&bgcolor=ffffff" alt="vCard QR Code" width="132" height="132">';
         }
 
         document.addEventListener('DOMContentLoaded', initQrCode);
