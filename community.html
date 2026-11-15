@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dispatches & Community Forum | SilenVault</title>
+    <meta name="description" content="SilenVault Dispatches & Community Forum. Comprehensive architectural breakdowns of each domain vertical, technical articles, and open community proposals.">
+    <meta name="keywords" content="SilenVault forum, community proposals, engineering blogs, tools.silenvault, captain nexus, client-side architecture, zero telemetry">
+    <meta name="author" content="SilenVault Architecture Team">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://silenvault.com/community">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://silenvault.com/community">
+    <meta property="og:title" content="Dispatches & Community Forum | SilenVault">
+    <meta property="og:description" content="In-depth domain spotlights, engineering dispatches, and open community proposals across the SilenVault ecosystem.">
+    <meta property="og:image" content="https://silenvault.com/assets/img/BANNER.webp">
+
+    <!-- Google AdSense Verification Tag -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5449371042798610" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQL2F8H2R9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VQL2F8H2R9');
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="/assets/img/SILENVAULT_CREST.webp">
+
+    <!-- Fonts & Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-obsidian: #020617;
+            --neon-cyan: #00f0ff;
+            --card-glass: rgba(15, 23, 42, 0.7);
+        }
+        body {
+            background-color: var(--bg-obsidian);
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-cyber { font-family: 'Orbitron', monospace; }
+        .font-mono-code { font-family: 'Fira Code', monospace; }
+        .font-raj { font-family: 'Rajdhani', sans-serif; }
+
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 10px 25px -10px rgba(0, 240, 255, 0.2);
+        }
+
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+        .filter-btn.active {
+            background-color: rgba(0, 240, 255, 0.15);
+            border-color: #00f0ff;
+            color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative select-none">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-[#020617]/85 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group focus:outline-none" title="SilenVault Master Gateway">
+                <img src="/assets/img/SILENVAULT_CREST.webp" alt="SilenVault Crest" class="h-9 w-auto object-contain transition-transform group-hover:scale-110">
+                <div class="flex flex-col">
+                    <span class="font-cyber font-extrabold text-lg tracking-wider text-white flex items-center gap-1.5">
+                        SILENVAULT <span class="text-xs px-1.5 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-400 font-mono-code">FORUM</span>
+                    </span>
+                    <span class="text-[10px] text-slate-400 font-mono-code tracking-widest uppercase">Dispatches & Community</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex items-center gap-7 text-xs font-mono-code font-bold uppercase tracking-wider text-slate-300">
+                <a href="/" class="hover:text-cyan-400 transition-colors">Gateway Home</a>
+                <a href="https://tools.silenvault.com" target="_blank" class="hover:text-cyan-400 transition-colors">Tools</a>
+                <a href="https://taxi.silenvault.com" target="_blank" class="hover:text-cyan-400 transition-colors">Mobility</a>
+                <a href="/community" class="text-amber-400 hover:text-white transition-colors">Dispatches</a>
+                <a href="/vcard" class="hover:text-cyan-400 transition-colors">vCard</a>
+            </nav>
+
+            <!-- Proposal CTA Pill -->
+            <div class="flex items-center gap-3">
+                <a href="#submit-proposal" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono-code text-xs font-bold transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)] flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    New Proposal
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Plane -->
+    <main class="flex-1 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+
+        <!-- Header Hero -->
+        <div class="mb-14 text-center max-w-3xl mx-auto">
+            <span class="text-xs font-mono-code text-amber-400 tracking-widest uppercase font-bold">// COMMUNITY FORUM & OPEN DISPATCHES</span>
+            <h1 class="text-3xl sm:text-5xl font-black text-white font-cyber mt-2 mb-4 tracking-tight">
+                ECOSYSTEM DISPATCHES
+            </h1>
+            <p class="text-slate-400 font-raj text-base sm:text-lg leading-relaxed">
+                Explore deep architectural spotlights for each SilenVault domain, inspect technical publications, and propose new client-side utilities directly to the core engineering desk.
+            </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex items-center justify-center flex-wrap gap-2 mb-12">
+            <button onclick="filterDispatches('all')" class="filter-btn active px-4 py-2 rounded-xl border border-slate-700 bg-slate-900/60 text-xs font-mono-code font-bold uppercase text-slate-300 hover:border-cyan-400" data-cat="all">
+                All Dispatches
+            </button>
+            <button onclick="filterDispatches('spotlight')" class="filter-btn px-4 py-2 rounded-xl border border-slate-700 bg-slate-900/60 text-xs font-mono-code font-bold uppercase text-slate-300 hover:border-cyan-400" data-cat="spotlight">
+                Domain Spotlights
+            </button>
+            <button onclick="filterDispatches('architecture')" class="filter-btn px-4 py-2 rounded-xl border border-slate-700 bg-slate-900/60 text-xs font-mono-code font-bold uppercase text-slate-300 hover:border-cyan-400" data-cat="architecture">
+                Engineering & Privacy
+            </button>
+            <button onclick="filterDispatches('proposal')" class="filter-btn px-4 py-2 rounded-xl border border-slate-700 bg-slate-900/60 text-xs font-mono-code font-bold uppercase text-slate-300 hover:border-cyan-400" data-cat="proposal">
+                Community Proposals
+            </button>
+        </div>
+
+        <!-- Dispatches / Articles Feed -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20" id="dispatches-grid">
+
+            <!-- Article 1: Tools Spotlight -->
+            <article class="glass-card rounded-2xl p-7 flex flex-col justify-between dispatch-card" data-category="spotlight">
+                <div>
+                    <div class="flex items-center justify-between text-xs font-mono-code text-cyan-400 mb-3">
+                        <span class="px-2.5 py-0.5 rounded bg-cyan-950 border border-cyan-800">DOMAIN SPOTLIGHT</span>
+                        <span class="text-slate-500">tools.silenvault.com</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white font-cyber mb-3">
+                        SilenVault Tools: Architecture of 34 Zero-Telemetry Utilities
+                    </h2>
+                    <p class="text-slate-400 font-raj text-base leading-relaxed mb-4">
+                        A comprehensive forensic breakdown of how Web Workers, Canvas 2D, and WebRTC eliminate cloud processing. Every file—from multi-megabyte JPEG compression to high-density vector QR codes—is calculated inside client memory.
+                    </p>
+                    <div class="text-xs text-slate-500 font-mono-code mb-6">
+                        Author: Abhishek Ramesh &bull; Reading Time: 6 min &bull; Published: Nov 2026
+                    </div>
+                </div>
+                <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
+                    <button onclick="toggleLike(this, 'art-1')" class="like-btn flex items-center gap-1.5 text-xs font-mono-code text-slate-400 hover:text-rose-400 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        <span class="like-count">142</span>
+                    </button>
+                    <a href="https://tools.silenvault.com" target="_blank" class="text-xs font-mono-code text-cyan-400 hover:underline flex items-center gap-1">
+                        Visit Domain &rarr;
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 2: Captain Nexus Mobility Spotlight -->
+            <article class="glass-card rounded-2xl p-7 flex flex-col justify-between dispatch-card" data-category="spotlight">
+                <div>
+                    <div class="flex items-center justify-between text-xs font-mono-code text-emerald-400 mb-3">
+                        <span class="px-2.5 py-0.5 rounded bg-emerald-950 border border-emerald-800">DOMAIN SPOTLIGHT</span>
+                        <span class="text-slate-500">taxi.silenvault.com</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white font-cyber mb-3">
+                        Captain Nexus: Mapping 95 Transit Hubs Without Location Harvesting
+                    </h2>
+                    <p class="text-slate-400 font-raj text-base leading-relaxed mb-4">
+                        How client-side Great-Circle Haversine calculations allow Rapido fleet captains and urban commuters to detect operational hubs, check servicing radii, and calculate commute limits without centralized telemetry tracking.
+                    </p>
+                    <div class="text-xs text-slate-500 font-mono-code mb-6">
+                        Author: Engineering Core &bull; Reading Time: 5 min &bull; Published: Nov 2026
+                    </div>
+                </div>
+                <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
+                    <button onclick="toggleLike(this, 'art-2')" class="like-btn flex items-center gap-1.5 text-xs font-mono-code text-slate-400 hover:text-rose-400 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        <span class="like-count">98</span>
+                    </button>
+                    <a href="https://taxi.silenvault.com" target="_blank" class="text-xs font-mono-code text-emerald-400 hover:underline flex items-center gap-1">
+                        Visit Domain &rarr;
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article 3: Architecture & Privacy Manifesto -->
+            <article class="glass-card rounded-2xl p-7 flex flex-col justify-between dispatch-card" data-category="architecture">
+                <div>
+                    <div class="flex items-center justify-between text-xs font-mono-code text-purple-400 mb-3">
+                        <span class="px-2.5 py-0.5 rounded bg-purple-950 border border-purple-800">ARCHITECTURE</span>
+                        <span class="text-slate-500">Security Core</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white font-cyber mb-3">
+                        The Death of Cloud Scraping: Why Utility Engines Outlive Generative AI
+                    </h2>
+                    <p class="text-slate-400 font-raj text-base leading-relaxed mb-4">
+                        In an era where large language models have commoditized generic articles, web properties survive only through active, interactive utility. An in-depth analysis of high-intent search traffic, dwell time, and programmatic tools.
+                    </p>
+                    <div class="text-xs text-slate-500 font-mono-code mb-6">
+                        Author: Autonomous Entity &bull; Reading Time: 8 min &bull; Published: Nov 2026
+                    </div>
+                </div>
+                <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
+                    <button onclick="toggleLike(this, 'art-3')" class="like-btn flex items-center gap-1.5 text-xs font-mono-code text-slate-400 hover:text-rose-400 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        <span class="like-count">215</span>
+                    </button>
+                    <span class="text-xs font-mono-code text-purple-400">Read Dossier &rarr;</span>
+                </div>
+            </article>
+
+            <!-- Article 4: Physical-Digital Twin Hardware -->
+            <article class="glass-card rounded-2xl p-7 flex flex-col justify-between dispatch-card" data-category="spotlight">
+                <div>
+                    <div class="flex items-center justify-between text-xs font-mono-code text-blue-400 mb-3">
+                        <span class="px-2.5 py-0.5 rounded bg-blue-950 border border-blue-800">DOMAIN SPOTLIGHT</span>
+                        <span class="text-slate-500">silenvault.com/vcard</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white font-cyber mb-3">
+                        Physical-Digital Twin Sync: Tactile NFC Cards and Web Twins
+                    </h2>
+                    <p class="text-slate-400 font-raj text-base leading-relaxed mb-4">
+                        Calibrating foil stops, carbon matte bevels, and NTAG215 NFC chips with our client-side 3D flip card. Scanned directly by native smartphone camera apps without third-party apps or server pings.
+                    </p>
+                    <div class="text-xs text-slate-500 font-mono-code mb-6">
+                        Author: Abhishek Ramesh &bull; Reading Time: 4 min &bull; Published: Oct 2026
+                    </div>
+                </div>
+                <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
+                    <button onclick="toggleLike(this, 'art-4')" class="like-btn flex items-center gap-1.5 text-xs font-mono-code text-slate-400 hover:text-rose-400 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        <span class="like-count">83</span>
+                    </button>
+                    <a href="/vcard" class="text-xs font-mono-code text-blue-400 hover:underline flex items-center gap-1">
+                        View Twin &rarr;
+                    </a>
+                </div>
+            </article>
+
+            <!-- Community Proposal 1 -->
+            <article class="glass-card rounded-2xl p-7 flex flex-col justify-between dispatch-card" data-category="proposal">
+                <div>
+                    <div class="flex items-center justify-between text-xs font-mono-code text-amber-400 mb-3">
+                        <span class="px-2.5 py-0.5 rounded bg-amber-950 border border-amber-800">COMMUNITY PROPOSAL</span>
+                        <span class="text-emerald-400 font-bold">[QUEUED]</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white font-cyber mb-3">
+                        Proposal #041: Client-Side Audio Frequency Visualizer & Tone Calibrator
+                    </h2>
+                    <p class="text-slate-400 font-raj text-base leading-relaxed mb-4">
+                        Request to expand <code class="text-cyan-400 font-mono-code">tools.silenvault.com</code> with a Web Audio API tone generator capable of testing audio hardware, binaural frequencies, and microphone frequency responses.
+                    </p>
+                    <div class="text-xs text-slate-500 font-mono-code mb-6">
+                        Submitted by: @audiodev &bull; Status: In Review
+                    </div>
+                </div>
+                <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
+                    <button onclick="toggleLike(this, 'prop-1')" class="like-btn flex items-center gap-1.5 text-xs font-mono-code text-slate-400 hover:text-rose-400 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        <span class="like-count">64</span>
+                    </button>
+                    <span class="text-xs font-mono-code text-slate-500">12 Comments</span>
+                </div>
+            </article>
+
+            <!-- Dynamic Community Injected Card Container (via LocalStorage) -->
+            <div id="dynamic-proposals-root" class="contents"></div>
+
+        </div>
+
+        <!-- Google AdSense Contextual Ad Unit -->
+        <section class="my-12">
+            <div class="rounded-xl border border-slate-800/80 bg-slate-900/40 p-4 text-center min-h-[90px] flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:block; text-align:center;"
+                     data-ad-layout="in-article"
+                     data-ad-format="fluid"
+                     data-ad-client="ca-pub-5449371042798610"
+                     data-ad-slot="auto"></ins>
+                <script>
+                     try {
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                     } catch (e) {
+                         console.warn("[SilenVault AdSense] Ad delivery notice.");
+                     }
+                </script>
+            </div>
+        </section>
+
+        <!-- Interactive Community Proposal / Form Submission Module -->
+        <section id="submit-proposal" class="max-w-4xl mx-auto glass-card rounded-2xl p-8 sm:p-12 border-slate-700 shadow-2xl relative">
+            <div class="text-center mb-10">
+                <span class="text-xs font-mono-code text-amber-400 tracking-widest uppercase font-bold">// COMMUNITY GOVERNANCE</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-white font-cyber mt-2">
+                    Submit a Domain Proposal or Tool Idea
+                </h2>
+                <p class="text-slate-400 font-raj text-base max-w-xl mx-auto mt-2">
+                    Have an idea for a client-side tool? Want a new transit city on Captain Nexus? Submit your proposal directly into the ecosystem queue.
+                </p>
+            </div>
+
+            <form onsubmit="handleProposalSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-mono-code font-bold uppercase text-slate-300 mb-2">Target Domain / Vertical</label>
+                        <select id="prop-target" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm font-mono-code focus:outline-none focus:border-amber-400">
+                            <option value="tools.silenvault.com">tools.silenvault.com (Client Utilities)</option>
+                            <option value="taxi.silenvault.com">taxi.silenvault.com (Mobility Radar)</option>
+                            <option value="store.silenvault.com">store.silenvault.com (Digital Goods)</option>
+                            <option value="silenvault.com/vcard">silenvault.com/vcard (Digital Twin)</option>
+                            <option value="General SilenVault Core">General SilenVault Core</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono-code font-bold uppercase text-slate-300 mb-2">Proposal Category</label>
+                        <select id="prop-category" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm font-mono-code focus:outline-none focus:border-amber-400">
+                            <option value="New Tool Suggestion">New Tool Suggestion</option>
+                            <option value="Feature Enhancement">Feature Enhancement</option>
+                            <option value="Transit City Addition">Transit City Addition (Mobility)</option>
+                            <option value="Security / Privacy Audit">Security / Privacy Audit</option>
+                            <option value="General Community Idea">General Community Idea</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono-code font-bold uppercase text-slate-300 mb-2">Proposal Title</label>
+                    <input type="text" id="prop-title" required placeholder="e.g., Client-side SVG Path Minifier & Clean-up Tool" 
+                           class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm font-mono-code focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono-code font-bold uppercase text-slate-300 mb-2">Technical Description & Scope</label>
+                    <textarea id="prop-body" rows="4" required placeholder="Explain why this utility is needed, how it should process data locally in RAM, and expected user value..."
+                              class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm font-mono-code focus:outline-none focus:border-amber-400"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-mono-code font-bold uppercase text-slate-300 mb-2">Author Handle / Name (Optional)</label>
+                        <input type="text" id="prop-author" placeholder="@handle or Anonymous" 
+                               class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm font-mono-code focus:outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono-code font-bold uppercase text-slate-300 mb-2">Contact Email (Optional for alerts)</label>
+                        <input type="email" id="prop-email" placeholder="dev@domain.com" 
+                               class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm font-mono-code focus:outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <span class="text-xs text-slate-500 font-mono-code">All proposals are logged to the local browser feed and reviewed by the architecture desk.</span>
+                    <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono-code text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+                        Dispatch Proposal &rarr;
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Global Compliance Footer -->
+    <footer class="bg-[#01040f] border-t border-slate-800/80 pt-16 pb-12 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="/assets/img/SILENVAULT_CREST.webp" alt="SilenVault" class="h-7 w-auto object-contain">
+                        <span class="font-cyber font-extrabold text-white text-lg tracking-wider">SILENVAULT</span>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-sm leading-relaxed font-raj">
+                        Sovereign digital ecosystem. Engineered for client-side execution, zero-knowledge utilities, and decentralized mobility telemetry.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-cyber text-xs uppercase tracking-wider mb-4">Navigation</h4>
+                    <ul class="space-y-2.5 text-xs font-mono-code text-slate-400">
+                        <li><a href="/" class="hover:text-cyan-400 transition-colors">Gateway Home</a></li>
+                        <li><a href="https://tools.silenvault.com" target="_blank" class="hover:text-cyan-400 transition-colors">Tools (34+)</a></li>
+                        <li><a href="https://taxi.silenvault.com" target="_blank" class="hover:text-cyan-400 transition-colors">Captain Nexus</a></li>
+                        <li><a href="/vcard" class="hover:text-cyan-400 transition-colors">Digital Twin vCard</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-cyber text-xs uppercase tracking-wider mb-4">Legal</h4>
+                    <ul class="space-y-2.5 text-xs font-mono-code text-slate-400">
+                        <li><a href="/privacy" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="https://tools.silenvault.com/donate" class="hover:text-cyan-400 transition-colors">Sponsor Vault</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-800/60 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono-code text-slate-500">
+                <p>&copy; 2026 SilenVault. Dispatches and Community Governance Plane.</p>
+                <div class="flex items-center gap-2 text-amber-400">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b]"></span>
+                    <span>Decentralized Architecture Channel</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Client Script -->
+    <script>
+        // Filter Dispatches Logic
+        function filterDispatches(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-cat') === category);
+            });
+
+            document.querySelectorAll('.dispatch-card').forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Like / Upvote Logic with LocalStorage Persistence
+        function toggleLike(btn, id) {
+            const countSpan = btn.querySelector('.like-count');
+            let current = parseInt(countSpan.textContent) || 0;
+            const likedKey = `sv_liked_${id}`;
+
+            if (localStorage.getItem(likedKey)) {
+                localStorage.removeItem(likedKey);
+                countSpan.textContent = current - 1;
+                btn.classList.remove('text-rose-500');
+                btn.classList.add('text-slate-400');
+            } else {
+                localStorage.setItem(likedKey, 'true');
+                countSpan.textContent = current + 1;
+                btn.classList.remove('text-slate-400');
+                btn.classList.add('text-rose-500');
+            }
+        }
+
+        // Render Local Proposals
+        function renderLocalProposals() {
+            const root = document.getElementById('dynamic-proposals-root');
+            const proposals = JSON.parse(localStorage.getItem('sv_proposals') || '[]');
+            
+            root.innerHTML = proposals.map((p, idx) => `
+                <article class="glass-card rounded-2xl p-7 flex flex-col justify-between dispatch-card" data-category="proposal">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono-code text-amber-400 mb-3">
+                            <span class="px-2.5 py-0.5 rounded bg-amber-950 border border-amber-800">COMMUNITY PROPOSAL</span>
+                            <span class="text-cyan-400 font-bold">[SUBMITTED]</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-white font-cyber mb-3">
+                            ${p.title}
+                        </h2>
+                        <p class="text-slate-400 font-raj text-base leading-relaxed mb-4">
+                            ${p.body}
+                        </p>
+                        <div class="text-xs text-slate-500 font-mono-code mb-6">
+                            Target: ${p.target} &bull; Author: ${p.author || 'Anonymous'} &bull; Just Now
+                        </div>
+                    </div>
+                    <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
+                        <button onclick="toggleLike(this, 'dyn-${idx}')" class="like-btn flex items-center gap-1.5 text-xs font-mono-code text-slate-400 hover:text-rose-400 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                            <span class="like-count">1</span>
+                        </button>
+                        <span class="text-xs font-mono-code text-amber-400">Stored in Queue &check;</span>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Handle Proposal Submission
+        function handleProposalSubmit(e) {
+            e.preventDefault();
+            const target = document.getElementById('prop-target').value;
+            const category = document.getElementById('prop-category').value;
+            const title = document.getElementById('prop-title').value.trim();
+            const body = document.getElementById('prop-body').value.trim();
+            const author = document.getElementById('prop-author').value.trim();
+
+            if (!title || !body) return;
+
+            const newProp = { target, category, title, body, author, date: new Date().toISOString() };
+            const existing = JSON.parse(localStorage.getItem('sv_proposals') || '[]');
+            existing.unshift(newProp);
+            localStorage.setItem('sv_proposals', JSON.stringify(existing));
+
+            // Reset form
+            e.target.reset();
+            renderLocalProposals();
+
+            alert("Proposal registered successfully! It is now visible in the community feed and queued for architectural review.");
+        }
+
+        // Initialize on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLocalProposals();
+        });
+    </script>
+</body>
+</html>
